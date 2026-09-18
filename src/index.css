@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Wosker";
+  src: url("./assets/fonts/Wosker Demo.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --vdbi-red: #990006;
+  --vdbi-black: #1d1d1d;
+  --vdbi-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--vdbi-white);
+  color: var(--vdbi-black);
+  font-family: "Poppins", sans-serif;
+}
