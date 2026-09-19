@@ -56,12 +56,12 @@ import shoe44 from "../assets/products/Nike-mind-001-slide-geode-teal-light-ment
 import shoe45 from "../assets/products/Nike-mind-001-slide-geode-teal-light-menta/5.png";
 import shoe46 from "../assets/products/Nike-mind-001-slide-geode-teal-light-menta/6.png";
 
-import shoe47 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/1.png";
-import shoe48 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/2.png";
-import shoe49 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/3.png";
-import shoe50 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/4.png";
-import shoe51 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/5.png";
-import shoe52 from "../assets/products/Nike-mind-001-slide-blackened-blue-game-royal/6.png";
+import shoe47 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/1.png";
+import shoe48 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/2.png";
+import shoe49 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/3.png";
+import shoe50 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/4.png";
+import shoe51 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/5.png";
+import shoe52 from "../assets/products/Nike-Mind-001-Slide-Blackened-Blue-Game-Royal/6.png";
 
 import shoe53 from "../assets/products/Nike-mind-001-slide-team-red-university-red/1.png";
 import shoe54 from "../assets/products/Nike-mind-001-slide-team-red-university-red/2.png";
