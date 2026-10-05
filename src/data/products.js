@@ -84,17 +84,30 @@ import shoe67 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple
 import shoe68 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple/3.png";
 import shoe69 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple/4.png";
 import shoe70 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple/5.png";
+import shoe71 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple/6.png";
+import shoe72 from "../assets/products/Nike-sb-dunk-low-pro-og-qs-special-purple/7.png";        
 
-import shoe71 from "../assets/products/Adidas-samba-og-white/1.png";
-import shoe72 from "../assets/products/Adidas-samba-og-white/2.png";
-import shoe73 from "../assets/products/Adidas-samba-og-white/3.png";
-import shoe74 from "../assets/products/Adidas-samba-og-white/4.png";
-import shoe75 from "../assets/products/Adidas-samba-og-white/5.png";
+import shoe73 from "../assets/products/Adidas-samba-og-white/1.png";
+import shoe74 from "../assets/products/Adidas-samba-og-white/2.png";
+import shoe75 from "../assets/products/Adidas-samba-og-white/3.png";
+import shoe76 from "../assets/products/Adidas-samba-og-white/4.png";
+import shoe77 from "../assets/products/Adidas-samba-og-white/5.png";
 
-import shoe76 from "../assets/products/Adidas-samba-og-black/1.png";
-import shoe77 from "../assets/products/Adidas-samba-og-black/2.png";
-import shoe78 from "../assets/products/Adidas-samba-og-black/3.png";
-import shoe79 from "../assets/products/Adidas-samba-og-black/4.png";
+import shoe78 from "../assets/products/Adidas-samba-og-black/1.png";
+import shoe79 from "../assets/products/Adidas-samba-og-black/2.png";
+import shoe80 from "../assets/products/Adidas-samba-og-black/3.png";
+import shoe81 from "../assets/products/Adidas-samba-og-black/4.png";
+
+import shoe82 from "../assets/products/Puma-baskets-Speedcat-OG-Dark-Brown/1.png";
+import shoe83 from "../assets/products/Puma-baskets-Speedcat-OG-Dark-Brown/2.png";
+import shoe84 from "../assets/products/Puma-baskets-Speedcat-OG-Dark-Brown/3.png";
+import shoe85 from "../assets/products/Puma-baskets-Speedcat-OG-Dark-Brown/4.png";
+
+import shoe86 from "../assets/products/Puma-baskets-Speedcat-OG/1.png";
+import shoe87 from "../assets/products/Puma-baskets-Speedcat-OG/2.png";
+import shoe88 from "../assets/products/Puma-baskets-Speedcat-OG/3.png";
+import shoe89 from "../assets/products/Puma-baskets-Speedcat-OG/4.png";
+import shoe90 from "../assets/products/Puma-baskets-Speedcat-OG/5.png";
 
 
 export const products = [
@@ -116,9 +129,9 @@ export const products = [
     sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"],
 
     images: [
-      shoe1,
-      shoe2,
       shoe3,
+      shoe2,
+      shoe1,
       shoe4
     ],
 
@@ -145,10 +158,10 @@ export const products = [
     sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"],
 
     images: [
+      shoe8,
       shoe5,
-      shoe6,
       shoe7,
-      shoe8
+      shoe6
     ],
 
     available: true,
@@ -203,8 +216,8 @@ export const products = [
     sizes: ["40", "41", "42", "43", "44", "45"],
 
     images: [
-      shoe13,
       shoe14,
+      shoe13,
       shoe15,
       shoe16,
     ],
@@ -232,10 +245,10 @@ export const products = [
     sizes: ["40", "41", "42", "43", "44"],
 
     images: [
-      shoe17,
+      shoe20,
       shoe18,
       shoe19,
-      shoe20,
+      shoe17,
     ],
 
     available: true,
@@ -338,9 +351,9 @@ export const products = [
     quality: "Premium",
     sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"],
     images: [
+      shoe32,
       shoe30,
       shoe31,
-      shoe32,
       shoe33,
     ],
     available: true,
@@ -482,8 +495,8 @@ export const products = [
     quality: "Premium",
     sizes: ["41", "42", "43", "44", "45", "46", "47"],
     images: [
-      shoe62,
       shoe63,
+      shoe62,
       shoe64,
       shoe65,
     ],
@@ -502,11 +515,13 @@ export const products = [
     quality: "Premium",
     sizes: ["41", "42", "43", "44", "45", "46", "47"],
     images: [
-      shoe66,
+      shoe72,
       shoe67,
       shoe68,
       shoe69,
       shoe70,
+      shoe71,
+      shoe66,
     ],
     available: true,
     isNew: true,
@@ -523,11 +538,11 @@ export const products = [
     quality: "Premium",
     sizes: ["41", "42", "43", "44", "45", "46", "47"],
     images: [
-      shoe71,
-      shoe72,
       shoe73,
       shoe74,
       shoe75,
+      shoe76,
+      shoe77,
     ],
     available: true,
     isNew: true,
@@ -536,7 +551,7 @@ export const products = [
   {
     id: 19,
 
-    name: "Adidas Samba OG Bhlack",
+    name: "Adidas Samba OG Black",
     brand: "Adidas",
     color: "Black",
     price: 18000,
@@ -544,10 +559,51 @@ export const products = [
     quality: "Premium",
     sizes: ["41", "42", "43", "44", "45", "46", "47"],
     images: [
-      shoe76,
-      shoe77,
       shoe78,
       shoe79,
+      shoe80,
+      shoe81,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 20,
+
+    name: "Puma baskets Speedcat OG 'Dark Brown'",
+    brand: "Puma",
+
+    color: "Dark Brown",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe82,
+      shoe83,
+      shoe84,
+      shoe85,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 21,
+    name: "Puma baskets Speedcat OG",
+    brand: "Puma",
+    color: "Black",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe86,
+      shoe87,
+      shoe88,
+      shoe89,
+      shoe90,
     ],
     available: true,
     isNew: true,
