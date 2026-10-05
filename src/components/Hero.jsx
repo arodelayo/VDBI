@@ -1,35 +1,43 @@
-
-
-
-
-
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { products } from "../data/products";
-
+import { products, heroProductIds } from "../data/products";
 function ShoeCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef(null);
 
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
+
+  // Produits sélectionnés pour le Hero uniquement
+  const heroProducts = heroProductIds
+    .map((id) => products.find((product) => product.id === id))
+    .filter(Boolean);
+
   const next = useCallback(() => {
-    setIndex((current) => (current + 1) % products.length);
-  }, []);
+    setIndex((current) => (current + 1) % heroProducts.length);
+  }, [heroProducts.length]);
+
+  const previous = useCallback(() => {
+    setIndex(
+      (current) =>
+        (current - 1 + heroProducts.length) % heroProducts.length
+    );
+  }, [heroProducts.length]);
 
   useEffect(() => {
-    if (paused || products.length <= 1) return;
+    if (paused || heroProducts.length <= 1) return;
 
     timerRef.current = setInterval(next, 3500);
 
     return () => {
       clearInterval(timerRef.current);
     };
-  }, [paused, next]);
+  }, [paused, next, heroProducts.length]);
 
-  if (!products.length) return null;
+  if (!heroProducts.length) return null;
 
-  const current = products[index];
+  const current = heroProducts[index];
 
   const goTo = (newIndex) => {
     setIndex(newIndex);
@@ -39,6 +47,56 @@ function ShoeCarousel() {
     setTimeout(() => {
       setPaused(false);
     }, 6000);
+  };
+
+  // Début du swipe
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+    touchStartY.current = event.touches[0].clientY;
+  };
+
+  // Fin du swipe
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX.current;
+    const deltaY = touchEndY - touchStartY.current;
+
+    // On ignore les petits mouvements
+    if (Math.abs(deltaX) < 40) {
+      touchStartX.current = null;
+      touchStartY.current = null;
+      return;
+    }
+
+    // Si le mouvement est davantage vertical,
+    // on laisse le navigateur gérer le scroll de la page
+    if (Math.abs(deltaX) <= Math.abs(deltaY)) {
+      touchStartX.current = null;
+      touchStartY.current = null;
+      return;
+    }
+
+    if (deltaX < 0) {
+      // Swipe vers la gauche → produit suivant
+      next();
+    } else {
+      // Swipe vers la droite → produit précédent
+      previous();
+    }
+
+    setPaused(true);
+
+    // Reprend automatiquement après 6 secondes
+    setTimeout(() => {
+      setPaused(false);
+    }, 6000);
+
+    touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
@@ -52,14 +110,20 @@ function ShoeCarousel() {
         onMouseLeave={() => setPaused(false)}
       >
 
-        <div className="relative flex h-[380px] w-full items-center justify-center overflow-hidden">
+        <div
+          className="relative flex h-[380px] w-full items-center justify-center overflow-hidden"
+          style={{ touchAction: "pan-y" }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
 
-          {products.map((product, i) => (
+          {heroProducts.map((product, i) => (
             <img
               key={product.id}
               src={product.images[0]}
               alt={product.name}
-              className={`absolute h-auto w-full max-w-[500px] object-contain transition-all duration-700 ease-out ${
+              draggable="false"
+              className={`absolute h-auto w-full max-w-[500px] select-none object-contain transition-all duration-700 ease-out ${
                 i === index
                   ? "translate-x-0 scale-100 opacity-100"
                   : i < index
@@ -94,7 +158,7 @@ function ShoeCarousel() {
       {/* Points de navigation */}
       <div className="mt-5 flex items-center gap-2">
 
-        {products.map((product, i) => (
+        {heroProducts.map((product, i) => (
           <button
             key={product.id}
             type="button"

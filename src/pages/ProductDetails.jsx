@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { products } from "../data/products";
 import OrderModal from "../components/OrderModal";
+
+const SWIPE_THRESHOLD = 50; // px minimum pour que ça compte comme un swipe
 
 function ProductDetails() {
   const { id } = useParams();
@@ -12,6 +14,44 @@ function ProductDetails() {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [showOrderModal, setShowOrderModal] = useState(false);
+
+  // --- Swipe / drag sur l'image principale ---
+  const startX = useRef(null);
+  const isDragging = useRef(false);
+
+  const goToNext = (total) => {
+    setSelectedImage((i) => (i + 1) % total);
+  };
+
+  const goToPrev = (total) => {
+    setSelectedImage((i) => (i - 1 + total) % total);
+  };
+
+  const handlePointerDown = (e) => {
+    isDragging.current = true;
+    startX.current = e.clientX;
+  };
+
+  const handlePointerUp = (e, total) => {
+    if (!isDragging.current || startX.current === null) return;
+    isDragging.current = false;
+
+    const deltaX = e.clientX - startX.current;
+    startX.current = null;
+
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || total <= 1) return;
+
+    if (deltaX < 0) {
+      goToNext(total); // swipe vers la gauche -> image suivante
+    } else {
+      goToPrev(total); // swipe vers la droite -> image précédente
+    }
+  };
+
+  const handlePointerLeave = () => {
+    isDragging.current = false;
+    startX.current = null;
+  };
 
   if (!product) {
     return (
@@ -37,6 +77,7 @@ function ProductDetails() {
   }
 
   const currentImage = product.images[selectedImage];
+  const totalImages = product.images.length;
 
   return (
     <main className="min-h-screen bg-white">
@@ -57,19 +98,42 @@ function ProductDetails() {
           {/* GALERIE */}
           <div>
 
-            {/* IMAGE PRINCIPALE */}
-            <div className="aspect-square bg-[#f5f5f5]">
+            {/* IMAGE PRINCIPALE — swipeable (tactile + souris) */}
+            <div
+              className="relative aspect-square touch-pan-y select-none overflow-hidden bg-[#f5f5f5]"
+              onPointerDown={handlePointerDown}
+              onPointerUp={(e) => handlePointerUp(e, totalImages)}
+              onPointerLeave={handlePointerLeave}
+              style={{ cursor: totalImages > 1 ? "grab" : "default" }}
+            >
 
               <img
                 src={currentImage}
                 alt={product.name}
-                className="h-full w-full object-contain p-8"
+                draggable={false}
+                className="h-full w-full object-contain p-8 transition-opacity duration-300"
               />
+
+              {/* Indicateur de points — visible seulement sur mobile/tablette */}
+              {totalImages > 1 && (
+                <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 md:hidden">
+                  {product.images.map((_, index) => (
+                    <span
+                      key={index}
+                      className={`h-1.5 rounded-full transition-all ${
+                        index === selectedImage
+                          ? "w-5 bg-[#990006]"
+                          : "w-1.5 bg-[#1d1d1d]/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
 
             </div>
 
             {/* MINIATURES */}
-            {product.images.length > 1 && (
+            {totalImages > 1 && (
               <div className="mt-4 grid grid-cols-4 gap-3">
 
                 {product.images.map((image, index) => (
