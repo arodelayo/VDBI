@@ -1,14 +1,22 @@
 import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 
 function Shop() {
-  const [search, setSearch] = useState("");
+  
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const initialSearch = searchParams.get("search") || "";
+  const initialFilter = searchParams.get("filter") || "";
+
+  const [search, setSearch] = useState(initialSearch);
   const [category, setCategory] = useState("Tous");
   const [quality, setQuality] = useState("Toutes");
   const [size, setSize] = useState("Toutes");
   const [sort, setSort] = useState("default");
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const newOnly = initialFilter === "new";
 
   const categories = [
     "Tous",
@@ -30,27 +38,35 @@ function Shop() {
   });
 
   const filteredProducts = useMemo(() => {
-    let result = products.filter((product) => {
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
+  let result = products.filter((product) => {
+    const searchText = search.toLowerCase().trim();
 
-      const matchesCategory =
-        category === "Tous" || product.category === category;
+    const matchesSearch =
+      !searchText ||
+      product.name.toLowerCase().includes(searchText) ||
+      product.brand.toLowerCase().includes(searchText) ||
+      product.category.toLowerCase().includes(searchText);
 
-      const matchesQuality =
-        quality === "Toutes" || product.quality === quality;
+    const matchesNew =
+      !newOnly || product.isNew === true;
 
-      const matchesSize =
-        size === "Toutes" || product.sizes.includes(size);
+    const matchesCategory =
+      category === "Tous" || product.category === category;
 
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesQuality &&
-        matchesSize
-      );
-    });
+    const matchesQuality =
+      quality === "Toutes" || product.quality === quality;
+
+    const matchesSize =
+      size === "Toutes" || product.sizes.includes(size);
+
+    return (
+      matchesSearch &&
+      matchesNew &&
+      matchesCategory &&
+      matchesQuality &&
+      matchesSize
+    );
+  });
 
     if (sort === "price-asc") {
       result.sort((a, b) => a.price - b.price);
@@ -65,15 +81,17 @@ function Shop() {
     }
 
     return result;
-  }, [search, category, quality, size, sort]);
+  }, [search, category, quality, size, sort, newOnly]);
 
   const resetFilters = () => {
-    setSearch("");
-    setCategory("Tous");
-    setQuality("Toutes");
-    setSize("Toutes");
-    setSort("default");
-  };
+  setSearch("");
+  setCategory("Tous");
+  setQuality("Toutes");
+  setSize("Toutes");
+  setSort("default");
+
+  setSearchParams({});
+};
 
   return (
     <main className="min-h-screen bg-white">

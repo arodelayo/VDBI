@@ -109,6 +109,82 @@ import shoe88 from "../assets/products/Puma-baskets-Speedcat-OG/3.png";
 import shoe89 from "../assets/products/Puma-baskets-Speedcat-OG/4.png";
 import shoe90 from "../assets/products/Puma-baskets-Speedcat-OG/5.png";
 
+import shoe91 from "../assets/products/Puma-baskets-Speedcat-OG-Red-White/1.png";
+import shoe92 from "../assets/products/Puma-baskets-Speedcat-OG-Red-White/2.png";
+import shoe93 from "../assets/products/Puma-baskets-Speedcat-OG-Red-White/3.png";
+import shoe94 from "../assets/products/Puma-baskets-Speedcat-OG-Red-White/4.png";
+import shoe95 from "../assets/products/Puma-baskets-Speedcat-OG-Red-White/5.png";
+
+import shoe96 from "../assets/products/New-Balance-530-White-Silver-Navy/1.png";
+import shoe97 from "../assets/products/New-Balance-530-White-Silver-Navy/2.png";
+import shoe98 from "../assets/products/New-Balance-530-White-Silver-Navy/3.png";
+import shoe99 from "../assets/products/New-Balance-530-White-Silver-Navy/4.png";
+import shoe100 from "../assets/products/New-Balance-530-White-Silver-Navy/5.png";
+
+import shoe101 from "../assets/products/New-balance-9060-warped-multicolor/1.png";
+import shoe102 from "../assets/products/New-balance-9060-warped-multicolor/2.png";
+
+import shoe103 from "../assets/products/Puma-suede-xl-blue/1.png";
+import shoe104 from "../assets/products/Puma-suede-xl-blue/2.png";
+
+import shoe105 from "../assets/products/Nike-air-max-95-og-neon/1.png";
+import shoe106 from "../assets/products/Nike-air-max-95-og-neon/2.png";
+import shoe107 from "../assets/products/Nike-air-max-95-og-neon/3.png";
+import shoe108 from "../assets/products/Nike-air-max-95-og-neon/4.png";
+
+import shoe109 from "../assets/products/Jordan-4-Retro-White-Oreo/1.png";
+import shoe110 from "../assets/products/Jordan-4-Retro-White-Oreo/2.png";
+import shoe111 from "../assets/products/Jordan-4-Retro-White-Oreo/3.png";
+import shoe112 from "../assets/products/Jordan-4-Retro-White-Oreo/4.png";
+
+import shoe113 from "../assets/products/Air-Jordan-4-Retro-OG-Bred/1.png";
+import shoe114 from "../assets/products/Air-Jordan-4-Retro-OG-Bred/2.png";
+import shoe115 from "../assets/products/Air-Jordan-4-Retro-OG-Bred/3.png";
+import shoe116 from "../assets/products/Air-Jordan-4-Retro-OG-Bred/4.png";
+import shoe117 from "../assets/products/Air-Jordan-4-Retro-OG-Bred/5.png";
+
+import shoe118 from "../assets/products/Jordan-x-Off-White-Air-Jordan-4-Retro-SP-Sail/1.png";
+import shoe119 from "../assets/products/Jordan-x-Off-White-Air-Jordan-4-Retro-SP-Sail/2.png";
+import shoe120 from "../assets/products/Jordan-x-Off-White-Air-Jordan-4-Retro-SP-Sail/3.png";
+import shoe121 from "../assets/products/Jordan-x-Off-White-Air-Jordan-4-Retro-SP-Sail/4.png";
+import shoe122 from "../assets/products/Jordan-x-Off-White-Air-Jordan-4-Retro-SP-Sail/5.png";
+
+import shoe123 from "../assets/products/Rick-Owens-Hollywood-sneakers/1.png";
+import shoe124 from "../assets/products/Rick-Owens-Hollywood-sneakers/2.png";
+import shoe125 from "../assets/products/Rick-Owens-Hollywood-sneakers/3.png";
+
+import shoe126 from "../assets/products/Rick-Owens-baskets-Jumbolace/1.png";
+import shoe127 from "../assets/products/Rick-Owens-baskets-Jumbolace/2.png";
+import shoe128 from "../assets/products/Rick-Owens-baskets-Jumbolace/3.png";
+import shoe129 from "../assets/products/Rick-Owens-baskets-Jumbolace/4.png";
+
+import shoe130 from "../assets/products/Rick-Owens-lacets-oversize/1.png";
+import shoe131 from "../assets/products/Rick-Owens-lacets-oversize/2.png";
+import shoe132 from "../assets/products/Rick-Owens-lacets-oversize/3.png";
+
+import shoe133 from "../assets/products/rick-owens-black-temple-geobasket-sneakers/1.png";
+import shoe134 from "../assets/products/rick-owens-black-temple-geobasket-sneakers/2.png";
+import shoe135 from "../assets/products/rick-owens-black-temple-geobasket-sneakers/3.png";
+import shoe136 from "../assets/products/rick-owens-black-temple-geobasket-sneakers/4.png";
+
+import shoe137 from "../assets/products/Louis-Vuitton-LV-Skate-Sneaker-Marine-White/1.png";
+import shoe138 from "../assets/products/Louis-Vuitton-LV-Skate-Sneaker-Marine-White/2.png";
+import shoe139 from "../assets/products/Louis-Vuitton-LV-Skate-Sneaker-Marine-White/3.png";
+
+import shoe140 from "../assets/products/NIKE x NOCTA HOT STEP AIR TERRA/1.png";
+import shoe141 from "../assets/products/NIKE x NOCTA HOT STEP AIR TERRA/2.png"; 
+import shoe142 from "../assets/products/NIKE x NOCTA HOT STEP AIR TERRA/3.png";
+
+import shoe143 from "../assets/products/NIKE AIR MAX DN SUPREME BLACK/1.png";
+import shoe144 from "../assets/products/NIKE AIR MAX DN SUPREME BLACK/2.png";
+import shoe145 from "../assets/products/NIKE AIR MAX DN SUPREME BLACK/3.png";
+import shoe146 from "../assets/products/NIKE AIR MAX DN SUPREME BLACK/4.png";
+import shoe147 from "../assets/products/NIKE AIR MAX DN SUPREME BLACK/5.png";
+
+import shoe148 from "../assets/products/Maison MIHARA YASUHIRO/1.png";
+import shoe149 from "../assets/products/Maison MIHARA YASUHIRO/2.png";
+import shoe150 from "../assets/products/Maison MIHARA YASUHIRO/3.png";
+
 
 export const products = [
   {
@@ -201,7 +277,7 @@ export const products = [
   {
     id: 4,
 
-    name: "Air Max 95 Green ",
+    name: "Nike Air Max 95 Green ",
 
     brand: "Nike",
 
@@ -609,18 +685,319 @@ export const products = [
     isNew: true,
   },
 
-  
+  {
+    id: 22,
+    name: "Puma baskets Speedcat OG 'Red/White'",
+    abrand: "Puma",
+    color: "Red/White",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe91,
+      shoe92,
+      shoe93,
+      shoe94,
+      shoe95,
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 23,
+    name: "New Balance 530 White Silver Navy",
+    brand: "New Balance",
+    color: "White/Silver/Navy",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe96,
+      shoe97,
+      shoe98,
+      shoe99,
+      shoe100,
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 24,
+    name: "New balance 9060 warped multicolor",
+    brand: "New Balance",
+    color: "Multicolor",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe101,
+      shoe102,
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 25,
+    name: "Puma Suede XL  Blue",
+    brand: "Puma",
+    color: "Blue",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe103,
+      shoe104,
+    
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 26,
+    name: "Nike Air Max 95 OG Neon",
+    brand: "Nike",
+    color: "Neon",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe105,
+      shoe106,
+      shoe107,
+      shoe108,
+      
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 27,
+    name: "Jordan 4 Retro White Oreo",
+    brand: "Jordan",
+    color: "White/Oreo",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe109,
+      shoe110,
+      shoe111,
+      shoe112,
+   
+    ],
+    available: true,
+    isNew: true,
+  },
 
+  {
+    id: 28,
+    name: "Air Jordan 4 Retro OG Bred",
+    brand: "Jordan",
+    color: "Bred",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe113,
+      shoe114,
+      shoe115,
+      shoe116,
+      shoe117,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 29,
+    name: "Jordan x Off-White Air Jordan 4 Retro SP Sail",
+    brand: "Jordan",
+    color: "Sail",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe118,
+      shoe119,
+      shoe120,
+      shoe121,
+      shoe122,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 30,
+    name: "Rick Owens Hollywood sneakers",
+    brand: "Rick Owens",
+    color: "Black",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe123,
+      shoe124,
+      shoe125,
+      
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 31,
+    name: "Rick Owens baskets Jumbolace",
+    brand: "Rick Owens",
+    color: "Black",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe126,
+      shoe127,
+      shoe128,
+      shoe129,
+      
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 32,
+    name: "Rick Owens baskets à lacets oversize",
+    brand: "Rick Owens",
+    color: "white",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+     shoe130,
+    shoe131,
+    shoe132,
+    
+      
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 33,
+    name: "Rick Owens Baskets Black Temple Geobasket",
+    brand: "Rick Owens",
+    color: "Black",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe133,
+      shoe134,
+      shoe135,
+      shoe136,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 34,
+    name: "Louis Vuitton LV Skate Sneaker Marine White",
+    brand: "Louis Vuitton",
+    color: "Marine White",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe137,
+      shoe138,
+      shoe139,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 35,
+    name: "NIKE x NOCTA HOT STEP AIR TERRA",
+    brand: "NIKE",
+    color: "white",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe140,
+      shoe141,
+      shoe142,
+      
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 36,
+    name: "NIKE AIR MAX DN SUPREME BLACK",
+    brand: "NIKE",
+    color: "Black",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe143,
+      shoe144,
+      shoe145,
+      shoe146,
+      shoe147,
+    ],
+    available: true,
+    isNew: true,
+  },
+
+  {
+    id: 37,
+    name: "Maison MIHARA YASUHIRO baskets Peterson OG Sole en toile",
+    brand: "Maison MIHARA YASUHIRO",
+    color: "Black",
+    price: 40000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: ["41", "42", "43", "44", "45", "46", "47"],
+    images: [
+      shoe148,
+      shoe149,
+      shoe150,
+      
+    ],
+    available: true,
+    isNew: true,
+  }
 
 ];
 export const heroProductIds = [
   1,
-  2,
+  9,
   3,
   4,
   5,
