@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";import { Link } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { products, heroProductIds } from "../data/products";
 function ShoeCarousel() {
 const [index, setIndex] = useState(0);
 const [paused, setPaused] = useState(false);
 
 const timerRef = useRef(null);
-const pauseTimeoutRef = useRef(null);
+const pauseTimeoutRef = useRef(null); 
 const touchStartX = useRef(null);
 const touchStartY = useRef(null);
 
@@ -62,13 +63,13 @@ const current = heroProducts[currentIndex];
 const pauseTemporarily = () => {
 setPaused(true);
 
-```
+
 clearTimeout(pauseTimeoutRef.current);
 
 pauseTimeoutRef.current = setTimeout(() => {
   setPaused(false);
 }, 6000);
-```
+
 
 };
 
@@ -151,7 +152,7 @@ className={`absolute h-auto max-h-full w-full max-w-[500px] select-none object-c
 />
 ))}
 
-```
+
       <span className="absolute bottom-4 rounded-full bg-[#1d1d1d]/70 px-4 py-2 font-sans text-[10px] uppercase tracking-wider text-white opacity-0 transition group-hover:opacity-100">
         Voir le produit
       </span>

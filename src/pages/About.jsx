@@ -56,8 +56,7 @@ icon: Truck,
 ];
 
 return ( <main className="bg-white text-[#1d1d1d]">
-
-```
+  
   {/* HERO */}
   <section className="relative overflow-hidden bg-[#1d1d1d] text-white">
     <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#990006]/20 blur-3xl" />
