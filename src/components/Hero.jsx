@@ -1,182 +1,201 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";import { Link } from "react-router-dom";
 import { products, heroProductIds } from "../data/products";
 function ShoeCarousel() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef(null);
+const [index, setIndex] = useState(0);
+const [paused, setPaused] = useState(false);
 
-  const touchStartX = useRef(null);
-  const touchStartY = useRef(null);
+const timerRef = useRef(null);
+const pauseTimeoutRef = useRef(null);
+const touchStartX = useRef(null);
+const touchStartY = useRef(null);
 
-  // Produits sélectionnés pour le Hero uniquement
-  const heroProducts = heroProductIds
-    .map((id) => products.find((product) => product.id === id))
-    .filter(Boolean);
+const heroProducts = useMemo(
+() =>
+heroProductIds
+.map((id) => products.find((product) => product.id === id))
+.filter(Boolean),
+[]
+);
 
-  const next = useCallback(() => {
-    setIndex((current) => (current + 1) % heroProducts.length);
-  }, [heroProducts.length]);
+const next = useCallback(() => {
+setIndex((currentIndex) =>
+heroProducts.length
+? (currentIndex + 1) % heroProducts.length
+: 0
+);
+}, [heroProducts.length]);
 
-  const previous = useCallback(() => {
-    setIndex(
-      (current) =>
-        (current - 1 + heroProducts.length) % heroProducts.length
-    );
-  }, [heroProducts.length]);
+const previous = useCallback(() => {
+setIndex((currentIndex) =>
+heroProducts.length
+? (currentIndex - 1 + heroProducts.length) % heroProducts.length
+: 0
+);
+}, [heroProducts.length]);
 
-  useEffect(() => {
-    if (paused || heroProducts.length <= 1) return;
+// Défilement automatique
+useEffect(() => {
+if (paused || heroProducts.length <= 1) return;
 
-    timerRef.current = setInterval(next, 3500);
+timerRef.current = setInterval(next, 3500);
 
-    return () => {
-      clearInterval(timerRef.current);
-    };
-  }, [paused, next, heroProducts.length]);
+return () => {
+  clearInterval(timerRef.current);
+};
 
-  if (!heroProducts.length) return null;
+}, [paused, next, heroProducts.length]);
 
-  const current = heroProducts[index];
+// Nettoyage du délai de reprise
+useEffect(() => {
+return () => {
+clearTimeout(pauseTimeoutRef.current);
+clearInterval(timerRef.current);
+};
+}, []);
 
-  const goTo = (newIndex) => {
-    setIndex(newIndex);
-    setPaused(true);
+if (!heroProducts.length) return null;
 
-    // Reprend le défilement après 6 secondes
-    setTimeout(() => {
-      setPaused(false);
-    }, 6000);
-  };
+// Image, nom et prix proviennent du même objet produit.
+const currentIndex = index % heroProducts.length;
+const current = heroProducts[currentIndex];
 
-  // Début du swipe
-  const handleTouchStart = (event) => {
-    touchStartX.current = event.touches[0].clientX;
-    touchStartY.current = event.touches[0].clientY;
-  };
+const pauseTemporarily = () => {
+setPaused(true);
 
-  // Fin du swipe
-  const handleTouchEnd = (event) => {
-    if (touchStartX.current === null) return;
+```
+clearTimeout(pauseTimeoutRef.current);
 
-    const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
+pauseTimeoutRef.current = setTimeout(() => {
+  setPaused(false);
+}, 6000);
+```
 
-    const deltaX = touchEndX - touchStartX.current;
-    const deltaY = touchEndY - touchStartY.current;
+};
 
-    // On ignore les petits mouvements
-    if (Math.abs(deltaX) < 40) {
-      touchStartX.current = null;
-      touchStartY.current = null;
-      return;
-    }
+const goTo = (newIndex) => {
+setIndex(newIndex);
+pauseTemporarily();
+};
 
-    // Si le mouvement est davantage vertical,
-    // on laisse le navigateur gérer le scroll de la page
-    if (Math.abs(deltaX) <= Math.abs(deltaY)) {
-      touchStartX.current = null;
-      touchStartY.current = null;
-      return;
-    }
+const handleTouchStart = (event) => {
+touchStartX.current = event.touches[0].clientX;
+touchStartY.current = event.touches[0].clientY;
+};
 
-    if (deltaX < 0) {
-      // Swipe vers la gauche → produit suivant
-      next();
-    } else {
-      // Swipe vers la droite → produit précédent
-      previous();
-    }
-
-    setPaused(true);
-
-    // Reprend automatiquement après 6 secondes
-    setTimeout(() => {
-      setPaused(false);
-    }, 6000);
-
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
-
-  return (
-    <div className="vdbi-rise vdbi-rise-3 flex flex-col items-center">
-
-      {/* Produit cliquable */}
-      <Link
-        to={`/product/${current.id}`}
-        className="group block w-full max-w-[550px]"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-
-        <div
-          className="relative flex h-[380px] w-full items-center justify-center overflow-hidden"
-          style={{ touchAction: "pan-y" }}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-
-          {heroProducts.map((product, i) => (
-            <img
-              key={product.id}
-              src={product.images[0]}
-              alt={product.name}
-              draggable="false"
-              className={`absolute h-auto w-full max-w-[500px] select-none object-contain transition-all duration-700 ease-out ${
-                i === index
-                  ? "translate-x-0 scale-100 opacity-100"
-                  : i < index
-                  ? "-translate-x-12 scale-95 opacity-0"
-                  : "translate-x-12 scale-95 opacity-0"
-              }`}
-            />
-          ))}
-
-          {/* Petit indicateur */}
-          <span className="absolute bottom-4 rounded-full bg-[#1d1d1d]/70 px-4 py-2 font-sans text-[10px] uppercase tracking-wider text-white opacity-0 transition group-hover:opacity-100">
-            Voir le produit
-          </span>
-
-        </div>
-
-        {/* Informations */}
-        <div className="mt-6 text-center">
-
-          <p className="font-sans text-base font-medium">
-            {current.name}
-          </p>
-
-          <p className="mt-1 font-sans text-lg font-semibold text-text-white/70">
-            {current.price.toLocaleString("fr-FR")} FCFA
-          </p>
-
-        </div>
-
-      </Link>
-
-      {/* Points de navigation */}
-      <div className="mt-5 flex items-center gap-2">
-
-        {heroProducts.map((product, i) => (
-          <button
-            key={product.id}
-            type="button"
-            onClick={() => goTo(i)}
-            aria-label={`Voir ${product.name}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === index
-                ? "w-7 bg-[#990006]"
-                : "w-1.5 bg-white/30 hover:bg-white/60"
-            }`}
-          />
-        ))}
-
-      </div>
-
-    </div>
-  );
+const handleTouchEnd = (event) => {
+if (
+touchStartX.current === null ||
+touchStartY.current === null
+) {
+return;
 }
+
+
+const deltaX =
+  event.changedTouches[0].clientX - touchStartX.current;
+
+const deltaY =
+  event.changedTouches[0].clientY - touchStartY.current;
+
+touchStartX.current = null;
+touchStartY.current = null;
+
+// Ignore les mouvements courts ou principalement verticaux.
+if (
+  Math.abs(deltaX) < 40 ||
+  Math.abs(deltaX) <= Math.abs(deltaY)
+) {
+  return;
+}
+
+if (deltaX < 0) {
+  next();
+} else {
+  previous();
+}
+
+pauseTemporarily();
+
+
+};
+
+const formattedPrice = Number(current.price).toLocaleString("fr-FR");
+
+return ( <div className="vdbi-rise vdbi-rise-3 flex flex-col items-center">
+<Link
+to={`/product/${current.id}`}
+className="group block w-full max-w-[550px]"
+onMouseEnter={() => setPaused(true)}
+onMouseLeave={() => setPaused(false)}
+>
+{/* Images */}
+<div
+className="relative flex h-[300px] w-full items-center justify-center overflow-hidden sm:h-[380px]"
+style={{ touchAction: "pan-y" }}
+onTouchStart={handleTouchStart}
+onTouchEnd={handleTouchEnd}
+>
+{heroProducts.map((product, i) => (
+<img
+key={product.id}
+src={product.images?.[0]}
+alt={product.name}
+draggable="false"
+className={`absolute h-auto max-h-full w-full max-w-[500px] select-none object-contain transition-all duration-700 ease-out ${
+                i === currentIndex
+                  ? "translate-x-0 scale-100 opacity-100"
+                  : i < currentIndex
+                    ? "-translate-x-12 scale-95 opacity-0"
+                    : "translate-x-12 scale-95 opacity-0"
+              }`}
+/>
+))}
+
+```
+      <span className="absolute bottom-4 rounded-full bg-[#1d1d1d]/70 px-4 py-2 font-sans text-[10px] uppercase tracking-wider text-white opacity-0 transition group-hover:opacity-100">
+        Voir le produit
+      </span>
+    </div>
+
+    {/* Informations synchronisées avec le produit affiché */}
+    <div
+      key={current.id}
+      className="mt-6 text-center"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <p className="font-sans text-base font-medium">
+        {current.name}
+      </p>
+
+      <p className="mt-1 font-sans text-lg font-semibold text-white/70">
+        {formattedPrice} FCFA
+      </p>
+    </div>
+  </Link>
+
+  {/* Points de navigation */}
+  <div className="mt-5 flex items-center gap-2">
+    {heroProducts.map((product, i) => (
+      <button
+        key={product.id}
+        type="button"
+        onClick={() => goTo(i)}
+        aria-label={`Voir ${product.name}`}
+        aria-current={i === currentIndex ? "true" : undefined}
+        className={`h-1.5 rounded-full transition-all duration-300 ${
+          i === currentIndex
+            ? "w-7 bg-[#990006]"
+            : "w-1.5 bg-white/30 hover:bg-white/60"
+        }`}
+      />
+    ))}
+  </div>
+</div>
+
+);
+}
+
 
 
 function Hero() {

@@ -124,7 +124,7 @@ const productDefinitions = [
     name: "Nike Air Max 95 Green",
     brand: "Nike",
     color: "Green",
-    price: 18000,
+    price: 20000,
     category: "Unisex",
     quality: "Premium",
     sizes: [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
