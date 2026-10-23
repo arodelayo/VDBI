@@ -86,7 +86,7 @@ const productDefinitions = [
     folder: "Af1-white",
     imageOrder: ["03.png", "02.png", "01.png", "04.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -101,7 +101,7 @@ const productDefinitions = [
     folder: "Af1-black",
     imageOrder: ["4.png", "1.png", "3.png", "2.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -116,7 +116,7 @@ const productDefinitions = [
     folder: "Puma-suede-xl",
     imageOrder: ["1.png", "2.png", "3.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -131,7 +131,7 @@ const productDefinitions = [
     folder: "Air-max-95-green",
     imageOrder: ["2.png", "1.png", "3.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -146,7 +146,7 @@ const productDefinitions = [
     folder: "Asics-gel-kayano",
     imageOrder: ["4.png", "2.png", "3.png", "1.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -161,7 +161,7 @@ const productDefinitions = [
     folder: "Asics-gel-nyc",
     imageOrder: ["1.png", "2.png", "3.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -176,7 +176,7 @@ const productDefinitions = [
     folder: "New-balance-fuelcell-rebel-v4",
     imageOrder: ["1.png", "2.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -191,7 +191,7 @@ const productDefinitions = [
     folder: "Adidas-gazelle",
     imageOrder: ["1.png", "2.png", "3.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -206,7 +206,7 @@ const productDefinitions = [
     folder: "Asics-gel-nyc-black",
     imageOrder: ["3.png", "1.png", "2.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -221,7 +221,7 @@ const productDefinitions = [
     folder: "Adidas-campus-00s-korn",
     imageOrder: ["1.png", "2.png", "3.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -236,7 +236,7 @@ const productDefinitions = [
     folder: "Nike-mind-001-slide-black-chrome",
     imageOrder: ["2.png", "1.png", "3.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -258,7 +258,7 @@ const productDefinitions = [
       "6.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -280,7 +280,7 @@ const productDefinitions = [
       "6.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -301,7 +301,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -321,7 +321,7 @@ const productDefinitions = [
       "4.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -336,7 +336,7 @@ const productDefinitions = [
     folder: "Nike-sb-dunk-low-concepts-orange-lobster",
     imageOrder: ["2.png", "1.png", "3.png", "4.png"],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -359,7 +359,7 @@ const productDefinitions = [
       "1.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -380,7 +380,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -400,7 +400,7 @@ const productDefinitions = [
       "4.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -420,7 +420,7 @@ const productDefinitions = [
       "4.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -441,7 +441,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -462,7 +462,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -483,7 +483,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -501,7 +501,7 @@ const productDefinitions = [
       "2.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -519,7 +519,7 @@ const productDefinitions = [
       "2.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -539,7 +539,7 @@ const productDefinitions = [
       "4.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -559,7 +559,7 @@ const productDefinitions = [
       "4.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -580,7 +580,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -601,7 +601,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -698,7 +698,7 @@ const productDefinitions = [
       "3.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -717,7 +717,7 @@ const productDefinitions = [
       "3.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -738,7 +738,7 @@ const productDefinitions = [
       "5.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -757,8 +757,54 @@ const productDefinitions = [
       "3.png",
     ],
     available: true,
-    isNew: true,
+    isNew: false,
   },
+
+  {
+    id: 38,
+    name: "Air Jordan Jumpman MVP Industrial Blue",
+    brand: "Air Jordan",
+    color: "Industrial Blue",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: [41, 42, 43, 44, 45, 46, 47],
+    folder: "Air-Jordan-Big-Kids-Jumpman-MVP-Industrial-Blue",
+    imageOrder: [
+      "1.png",
+      "2.png",
+      "3.png",
+    ],
+    available: true,
+    isNew: false,
+  },
+
+  {
+    id: 39,
+    name: "Air Jordan 13 Retro Blue Grey",
+    brand: "Air Jordan",
+    color: "Blue Grey",
+    price: 18000,
+    category: "Unisex",
+    quality: "Premium",
+    sizes: [41, 42, 43, 44, 45, 46, 47],
+    folder: "Air-Jordan-13-Retro-Blue-Grey",
+    imageOrder: [
+      "1.png",
+      "2.png",
+      "3.png",
+    ],
+    available: true,
+    isNew: false,
+  }
+
+ 
+
+
+
+
+
+
 ];
 
 

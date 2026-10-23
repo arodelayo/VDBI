@@ -17,12 +17,12 @@ function ProductCard({ product }) {
             alt={product.name}
             className="h-full w-full object-contain p-5 transition duration-500 group-hover:scale-105"
           />
-{/* 
+
           {product.isNew && (
             <span className="absolute left-3 top-3 bg-[#990006] px-3 py-1 font-sans text-[10px] font-medium uppercase tracking-wider text-white">
               Nouveau
             </span>
-          )} */}
+          )}
 
           {!product.available && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50">
