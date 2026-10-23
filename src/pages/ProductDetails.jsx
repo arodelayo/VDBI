@@ -226,11 +226,11 @@ function ProductDetails() {
             </button>
 
             {showOrderModal && (
-              <OrderModal
-              product={product}
-              onClose={() => setShowOrderModal(false)}
-              />
-            )}
+  <OrderModal
+    product={product}
+    onClose={() => setShowOrderModal(false)}
+  />
+)}
 
           </div>
 

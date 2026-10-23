@@ -3,7 +3,7 @@ import { useState } from "react";
 function OrderModal({ product, onClose }) {
   const [form, setForm] = useState({
     firstName: "",
-    size: "",
+    sizes: [],
     color: product.color || "",
     quantity: 1,
     city: "",
@@ -21,13 +21,35 @@ function OrderModal({ product, onClose }) {
     }));
   };
 
+  const handleSizeChange = (size) => {
+  setForm((prev) => {
+    const currentSizes = prev.sizes ?? [];
+
+      const updatedSizes = currentSizes.includes(size)
+
+      ? currentSizes.filter((selectedSize) => selectedSize !== size)
+      : [...currentSizes, size];
+
+    return {
+      ...prev,
+      sizes: updatedSizes,
+      quantity: updatedSizes.length,
+    };
+  });
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (form.sizes.length === 0) {
+  alert("Veuillez sélectionner au moins une pointure.");
+  return;
+}
 
     const message = `
 Bonjour, je souhaite commander :
 
-Produit : ${product.name}
+Pointure(s) : ${(form.sizes ?? []).join(", ")}
+
 Marque : ${product.brand}
 Couleur : ${form.color}
 Pointure : ${form.size}
@@ -117,32 +139,43 @@ Merci de me confirmer la disponibilité ainsi que les frais de livraison.
             />
           </div>
 
-          {/* POINTURE */}
-          <div>
-            <label className="mb-3 block font-sans text-xs font-medium uppercase tracking-wider text-[#1d1d1d]/60">
-              Pointure *
-            </label>
+          {/* POINTURES */}
 
-            <div className="flex flex-wrap gap-2">
-              {product.sizes.map((size) => (
-                <label key={size}>
-                  <input
-                    type="radio"
-                    name="size"
-                    value={size}
-                    required
-                    checked={form.size === size}
-                    onChange={handleChange}
-                    className="peer sr-only"
-                  />
+<div>
+  <p className="mb-3 font-sans text-xs font-medium uppercase tracking-wider text-[#1d1d1d]/60">
+    Pointures * — Sélectionnez une ou plusieurs pointures
+  </p>
 
-                  <span className="block cursor-pointer border border-[#1d1d1d]/15 px-5 py-3 font-sans text-sm font-light transition peer-checked:border-[#990006] peer-checked:bg-[#990006] peer-checked:text-white hover:border-[#990006]">
-                    {size}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
+  <div className="flex flex-wrap gap-2">
+    {product.sizes.map((size) => {
+      const selected = (form.sizes ?? []).includes(size);
+
+
+  return (
+    <button
+      key={size}
+      type="button"
+      onClick={() => handleSizeChange(size)}
+      aria-pressed={selected}
+      className={`flex h-12 min-w-12 items-center justify-center border px-4 font-sans text-sm transition-colors ${
+        selected
+          ? "border-[#990006] bg-[#990006] text-white"
+          : "border-[#1d1d1d]/15 bg-white text-[#1d1d1d] hover:border-[#990006]"
+      }`}
+    >
+      {size}
+    </button>
+  );
+})}
+
+  </div>
+
+{form.sizes.length === 0 && ( <p className="mt-2 font-sans text-xs text-[#990006]">
+Veuillez sélectionner au moins une pointure. </p>
+)}
+
+</div>
+
 
           {/* COULEUR */}
           <div>
@@ -175,35 +208,15 @@ Merci de me confirmer la disponibilité ainsi que les frais de livraison.
 
             <div className="flex w-fit items-center border border-[#1d1d1d]/10">
 
-              <button
-                type="button"
-                onClick={() =>
-                  setForm((prev) => ({
-                    ...prev,
-                    quantity: Math.max(1, prev.quantity - 1),
-                  }))
-                }
-                className="h-11 w-11 font-sans text-lg font-light"
-              >
-                −
-              </button>
+             <div>
+  <p className="mb-2 font-sans text-xs font-medium uppercase tracking-wider text-[#1d1d1d]/60">
+    Quantité totale
+  </p>
 
-              <span className="flex h-11 w-12 items-center justify-center border-x border-[#1d1d1d]/10 font-sans text-sm">
-                {form.quantity}
-              </span>
-
-              <button
-                type="button"
-                onClick={() =>
-                  setForm((prev) => ({
-                    ...prev,
-                    quantity: prev.quantity + 1,
-                  }))
-                }
-                className="h-11 w-11 font-sans text-lg font-light"
-              >
-                +
-              </button>
+  <p className="font-sans text-lg font-semibold text-[#1d1d1d]">
+    {form.quantity} paire{form.quantity > 1 ? "s" : ""}
+  </p>
+</div>
 
             </div>
           </div>
