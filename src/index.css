@@ -5,12 +5,40 @@
   src: url("./assets/fonts/Wosker Demo.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+  /* Exclut explicitement les chiffres 0-9 (U+0030-0039) de la police démo pour basculer sur Poppins */
+  unicode-range: U+0020-002F, U+003A-007E, U+00A0-024F;
 }
 
 :root {
   --vdbi-red: #990006;
+  --vdbi-red-hover: #7d0005;
+  --vdbi-red-light: #c51b24;
   --vdbi-black: #1d1d1d;
   --vdbi-white: #ffffff;
+  --vdbi-gray-light: #f5f5f5;
+
+  /* Design Tokens harmonisés avec l'architecture de Bloom */
+  --background: #ffffff;
+  --foreground: #1d1d1d;
+  --card: #ffffff;
+  --card-foreground: #1d1d1d;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1d;
+  --primary: #990006;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #1d1d1d;
+  --muted: #f8f8f8;
+  --muted-foreground: #737373;
+  --accent: #fdf2f2;
+  --accent-foreground: #990006;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #990006;
+  --radius: 0.75rem;
 }
 
 * {
@@ -23,7 +51,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--vdbi-white);
-  color: var(--vdbi-black);
-  font-family: "Poppins", sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-wosker {
+  font-family: "Wosker", "Poppins", system-ui, sans-serif;
 }

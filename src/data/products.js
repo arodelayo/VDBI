@@ -9,11 +9,14 @@
 
   IMPORTANT :
   Les noms des dossiers dans "folder" doivent correspondre EXACTEMENT
-  aux noms présents dans src/assets/products/.
+  aux noms présents dans src/assets/products/ ou src/assets/produit/.
 */
 
 const imageModules = import.meta.glob(
-  "../assets/products/**/*.{png,jpg,jpeg,webp}",
+  [
+    "../assets/products/**/*.{png,jpg,jpeg,webp}",
+    "../assets/produit/**/*.{png,jpg,jpeg,webp}",
+  ],
   {
     eager: true,
     query: "?url",
@@ -22,7 +25,8 @@ const imageModules = import.meta.glob(
 );
 
 /**
- * Récupère automatiquement toutes les images d'un dossier produit.
+ * Récupère automatiquement toutes les images d'un dossier produit
+ * (cherche dans src/assets/products/ ET src/assets/produit/).
  *
  * Sans imageOrder :
  *   1.png, 2.png, 3.png, 4.png...
@@ -31,10 +35,12 @@ const imageModules = import.meta.glob(
  *   on conserve exactement l'ordre souhaité pour le produit.
  */
 function getProductImages(folder, imageOrder = []) {
-  const prefix = `../assets/products/${folder}/`;
+  if (!folder) return [];
+  const prefixProducts = `../assets/products/${folder}/`;
+  const prefixProduit = `../assets/produit/${folder}/`;
 
   const entries = Object.entries(imageModules)
-    .filter(([path]) => path.startsWith(prefix))
+    .filter(([path]) => path.startsWith(prefixProducts) || path.startsWith(prefixProduit))
     .sort(([pathA], [pathB]) =>
       pathA.localeCompare(pathB, undefined, { numeric: true })
     );
@@ -54,7 +60,9 @@ function getProductImages(folder, imageOrder = []) {
   return imageOrder
     .map((filename) => {
       const entry = entries.find(
-        ([path]) => path === `${prefix}${filename}`
+        ([path]) =>
+          path === `${prefixProducts}${filename}` ||
+          path === `${prefixProduit}${filename}`
       );
 
       if (!entry && import.meta.env.DEV) {
@@ -805,6 +813,21 @@ const productDefinitions = [
 
 
 
+  /*
+    ===================================================================
+    GUIDE D'AJOUT ET GESTION DES ARTICLES :
+    -------------------------------------------------------------------
+    1. Créez un sous-dossier dans src/assets/produit/ (ex: "Richelieu-cuir-noir")
+       et déposez-y vos photos (1.png, 2.png, etc.).
+    2. Ajoutez l'article ci-dessous avec les champs :
+       - section : "chaussures" OU "autres"
+       - category : "Souliers", "Nike", "Adidas", "Montres", "Parfums", "Chaussettes", etc.
+       - priority (optionnel) : nombre définissant la priorité d'affichage :
+           * 1 : Très prioritaire (modèles phares, faciles et rapides à livrer — affichés en premier)
+           * 2 : Normal (valeur par défaut appliquée si non spécifié)
+           * 3 : Secondaire
+    ===================================================================
+  */
 ];
 
 
@@ -812,12 +835,39 @@ const productDefinitions = [
    PRODUITS EXPORTÉS
    ========================================================= */
 
-export const products = productDefinitions.map(
-  ({ folder, imageOrder, ...product }) => ({
-    ...product,
-    images: getProductImages(folder, imageOrder),
+export const products = productDefinitions
+  .map(({ folder, imageOrder, ...product }) => {
+    const productImages = getProductImages(folder, imageOrder);
+    const section = product.section || "chaussures";
+    const category =
+      product.category && !["Unisex", "Homme", "Femme"].includes(product.category)
+        ? product.category
+        : (product.brand || "Chaussures");
+
+    // Prise en charge du champ optionnel priority (1 = très prioritaire, 2 = normal par défaut, 3 = secondaire)
+    const priority =
+      product.priority !== undefined &&
+      product.priority !== null &&
+      !isNaN(Number(product.priority))
+        ? Number(product.priority)
+        : 2;
+
+    return {
+      ...product,
+      priority,
+      section,
+      category,
+      brand: product.brand || category,
+      images: productImages,
+      image: productImages[0] || "",
+      rating: 4.8,
+      reviewsCount: 24 + ((product.id * 7) % 65),
+      description:
+        product.description ||
+        `Article ${product.name} signé ${product.brand || category}. Conception et finition ${product.quality?.toLowerCase() || "soignée"} pour un confort quotidien et une élégance incomparable.`,
+    };
   })
-);
+  .sort((a, b) => (a.priority ?? 2) - (b.priority ?? 2));
 
 
 /* =========================================================
