@@ -57,7 +57,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white max-w-full overflow-x-hidden">
       {/* Hero À Propos */}
       <section className="relative overflow-hidden bg-[#1d1d1d] py-20 md:py-28 text-white">
         <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#990006]/20 blur-3xl" />

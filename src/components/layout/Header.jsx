@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ease-in-out ${
+      className={`sticky top-0 z-50 transition-all duration-300 ease-in-out max-w-full overflow-x-hidden ${
         isVisible
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
@@ -71,8 +71,8 @@ export default function Header() {
           : "bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-xs"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-        <div className="flex items-center justify-between gap-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 max-w-full">
+        <div className="flex items-center justify-between gap-3 sm:gap-4 max-w-full">
           
           {/* Logo gauche */}
           <div className="flex items-center shrink-0">
@@ -81,7 +81,7 @@ export default function Header() {
               className="flex items-center transition-transform duration-200 hover:scale-[1.02]"
               aria-label="VDBI Accueil"
             >
-              <img src={logo} alt="VDBI - Vente de Baskets Ici" className="h-10 sm:h-12 w-auto object-contain" />
+              <img src={logo} alt="VDBI - Vente de Baskets Ici" className="h-9 sm:h-12 w-auto object-contain" />
             </Link>
           </div>
 
@@ -100,8 +100,8 @@ export default function Header() {
             </form>
           </div>
 
-          {/* Actions Droite : Devise, Langue FR/EN et Bouton Contact à l'extrême droite */}
-          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          {/* Actions Droite : Sur mobile uniquement Loupe + Burger. Sur desktop : Devise, Langue, Contact */}
+          <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
             
             {/* Loupe mobile */}
             <button
@@ -112,9 +112,9 @@ export default function Header() {
               <Search className="h-5 w-5" />
             </button>
 
-            {/* Sélecteur de Devise : FCFA / USD */}
+            {/* Sélecteur de Devise : FCFA / USD (Desktop uniquement) */}
             <div
-              className="hidden sm:inline-flex items-center rounded-xl bg-gray-100/80 p-0.5 border border-gray-200/80 text-xs font-semibold"
+              className="hidden md:inline-flex items-center rounded-xl bg-gray-100/80 p-0.5 border border-gray-200/80 text-xs font-semibold"
               aria-label="Sélecteur de devise"
             >
               <button
@@ -141,9 +141,9 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Sélecteur de Langue épuré : FR / EN sans bordure */}
+            {/* Sélecteur de Langue épuré : FR / EN (Desktop uniquement) */}
             <div
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold select-none px-1"
+              className="hidden md:inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold select-none px-1"
               aria-label="Sélecteur de langue"
             >
               <button
@@ -173,10 +173,10 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Bouton Contact à l'extrême droite avec bordure et fond rouge VDBI */}
+            {/* Bouton Contact à l'extrême droite (Desktop uniquement) */}
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl text-xs sm:text-sm font-semibold bg-[#990006] text-white border border-[#990006] hover:bg-[#7d0005] hover:border-[#7d0005] shadow-xs hover:shadow transition-all active:scale-95"
+              className="hidden md:inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl text-xs sm:text-sm font-semibold bg-[#990006] text-white border border-[#990006] hover:bg-[#7d0005] hover:border-[#7d0005] shadow-xs hover:shadow transition-all active:scale-95"
             >
               <Mail className="h-4 w-4" />
               <span>{t("nav_contact")}</span>
@@ -214,75 +214,94 @@ export default function Header() {
         {/* Menu mobile déroulant */}
         {isMobileOpen && (
           <nav className="md:hidden mt-3 pt-3 border-t border-gray-200 animate-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col space-y-3 pb-3">
-              {/* Sélecteurs mobiles Devise & Langue */}
-              <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                <span className="text-xs font-semibold text-gray-500">{t("currency")} :</span>
-                <div className="inline-flex rounded-lg bg-gray-100 p-0.5 text-xs font-semibold">
-                  <button
-                    onClick={() => setCurrency("FCFA")}
-                    className={`px-3 py-1 rounded-md ${
-                      currency === "FCFA" ? "bg-white text-[#990006] shadow-xs font-bold" : "text-gray-600"
-                    }`}
-                  >
-                    FCFA
-                  </button>
-                  <button
-                    onClick={() => setCurrency("USD")}
-                    className={`px-3 py-1 rounded-md ${
-                      currency === "USD" ? "bg-white text-[#990006] shadow-xs font-bold" : "text-gray-600"
-                    }`}
-                  >
-                    USD ($)
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                <span className="text-xs font-semibold text-gray-500">{t("language")} :</span>
-                <div className="inline-flex items-center gap-2 text-xs font-semibold select-none">
-                  <button
-                    type="button"
-                    onClick={() => setLanguage("FR")}
-                    className={`py-1 px-1.5 transition-colors cursor-pointer ${
-                      language === "FR"
-                        ? "text-[#990006] font-bold"
-                        : "text-gray-500 hover:text-gray-800 font-medium"
-                    }`}
-                  >
-                    FR
-                  </button>
-                  <span className="text-gray-300 select-none">/</span>
-                  <button
-                    type="button"
-                    onClick={() => setLanguage("EN")}
-                    className={`py-1 px-1.5 transition-colors cursor-pointer ${
-                      language === "EN"
-                        ? "text-[#990006] font-bold"
-                        : "text-gray-500 hover:text-gray-800 font-medium"
-                    }`}
-                  >
-                    EN
-                  </button>
-                </div>
-              </div>
-
+            <div className="flex flex-col space-y-2.5 pb-3">
+              {/* 1. LIEN ACCUEIL TOUT EN HAUT */}
               <Link
                 to="/"
                 onClick={() => setIsMobileOpen(false)}
-                className="py-2 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="py-2.5 px-3.5 rounded-xl text-sm font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#990006] transition-colors"
               >
                 {t("nav_home")}
               </Link>
 
+              {/* 2. LIEN À PROPOS */}
               <Link
-                to="/contact"
+                to="/about"
                 onClick={() => setIsMobileOpen(false)}
-                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold bg-[#990006] text-white border border-[#990006] hover:bg-[#7d0005]"
+                className="py-2 px-3.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-[#990006] transition-colors"
               >
-                <Mail className="h-4 w-4" />
-                <span>{t("nav_contact")}</span>
+                {t("nav_about")}
               </Link>
+
+              {/* SÉLECTEURS EN BAS : Devise, Langue, puis bouton Contact */}
+              <div className="pt-3 border-t border-gray-100 space-y-2.5">
+                
+                {/* Devise */}
+                <div className="flex items-center justify-between py-1.5 px-1">
+                  <span className="text-xs font-semibold text-gray-500">{t("currency")} :</span>
+                  <div className="inline-flex rounded-lg bg-gray-100 p-0.5 text-xs font-semibold">
+                    <button
+                      type="button"
+                      onClick={() => setCurrency("FCFA")}
+                      className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${
+                        currency === "FCFA" ? "bg-white text-[#990006] shadow-xs font-bold" : "text-gray-600"
+                      }`}
+                    >
+                      FCFA
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCurrency("USD")}
+                      className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${
+                        currency === "USD" ? "bg-white text-[#990006] shadow-xs font-bold" : "text-gray-600"
+                      }`}
+                    >
+                      USD ($)
+                    </button>
+                  </div>
+                </div>
+
+                {/* Langue (FR / EN) */}
+                <div className="flex items-center justify-between py-1.5 px-1 border-b border-gray-100 pb-3">
+                  <span className="text-xs font-semibold text-gray-500">{t("language")} :</span>
+                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold select-none">
+                    <button
+                      type="button"
+                      onClick={() => setLanguage("FR")}
+                      className={`py-1 px-2.5 rounded-lg transition-colors cursor-pointer ${
+                        language === "FR"
+                          ? "bg-red-50 text-[#990006] font-bold"
+                          : "text-gray-500 hover:text-gray-800 font-medium"
+                      }`}
+                    >
+                      FR
+                    </button>
+                    <span className="text-gray-300 select-none font-light">/</span>
+                    <button
+                      type="button"
+                      onClick={() => setLanguage("EN")}
+                      className={`py-1 px-2.5 rounded-lg transition-colors cursor-pointer ${
+                        language === "EN"
+                          ? "bg-red-50 text-[#990006] font-bold"
+                          : "text-gray-500 hover:text-gray-800 font-medium"
+                      }`}
+                    >
+                      EN
+                    </button>
+                  </div>
+                </div>
+
+                {/* Bouton Contact tout en bas */}
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold bg-[#990006] text-white border border-[#990006] hover:bg-[#7d0005] shadow-xs transition-all active:scale-95"
+                >
+                  <Mail className="h-4 w-4" />
+                  <span>{t("nav_contact")}</span>
+                </Link>
+
+              </div>
             </div>
           </nav>
         )}

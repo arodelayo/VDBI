@@ -290,7 +290,7 @@ export default function Home() {
   }, [activeSection, activeCategory, isEn]);
 
   return (
-    <div className="bg-white min-h-screen px-4 py-8 sm:py-12 lg:py-16 lg:px-8">
+    <div className="bg-white min-h-screen px-4 py-8 sm:py-12 lg:py-16 lg:px-8 max-w-full overflow-x-hidden">
       
       {/* En-tête épuré */}
       <div className="text-center mx-auto mb-10 sm:mb-12 space-y-3 max-w-4xl">
@@ -306,7 +306,7 @@ export default function Home() {
         </p>
 
         {/* NAVIGATION EN DEUX ONGLETS INTERACTIFS AVEC MENUS DÉROULANTS */}
-        <div ref={navRef} className="pt-6 flex flex-wrap items-center justify-center gap-3 relative z-30">
+        <div ref={navRef} className="pt-6 flex flex-wrap items-center justify-center gap-3 relative z-30 max-w-full">
           
           {/* ============================================================ */}
           {/* ONGLET 1 : TOUTES LES CHAUSSURES ▾                          */}
@@ -332,7 +332,7 @@ export default function Home() {
 
             {/* Menu Déroulant Chaussures */}
             {openDropdown === "chaussures" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 mt-2 w-64 max-w-[92vw] rounded-2xl bg-white border border-gray-200/90 shadow-2xl p-2 z-40 max-h-80 overflow-y-auto animate-in fade-in duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl bg-white border border-gray-200/90 shadow-2xl p-2 z-40 max-h-80 overflow-y-auto animate-in fade-in duration-150">
                 <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-100 mb-1">
                   {t("filter_by_brand")}
                 </div>
@@ -397,7 +397,7 @@ export default function Home() {
 
             {/* Menu Déroulant Autres Articles */}
             {openDropdown === "autres" && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 sm:right-0 sm:left-auto sm:translate-x-0 mt-2 w-64 max-w-[92vw] rounded-2xl bg-white border border-gray-200/90 shadow-2xl p-2 z-40 max-h-80 overflow-y-auto animate-in fade-in duration-150">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 sm:right-0 sm:left-auto sm:translate-x-0 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl bg-white border border-gray-200/90 shadow-2xl p-2 z-40 max-h-80 overflow-y-auto animate-in fade-in duration-150">
                 <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-100 mb-1">
                   {t("filter_by_category")}
                 </div>
@@ -438,7 +438,7 @@ export default function Home() {
       </div>
 
       {/* Grille Catalogue avec chargement progressif */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto w-full">
         {displayedProducts.length > 0 ? (
           <>
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

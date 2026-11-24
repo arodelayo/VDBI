@@ -71,7 +71,7 @@ export default function PwaInstallPrompt() {
   return (
     <aside
       aria-label="Installation de l'application VDBI"
-      className="fixed bottom-5 left-4 right-24 sm:right-auto sm:max-w-sm z-30 animate-in fade-in slide-in-from-bottom-3 duration-300"
+      className="fixed bottom-4 left-4 right-20 sm:right-auto sm:max-w-sm z-30 animate-in fade-in slide-in-from-bottom-3 duration-300 max-w-[calc(100vw-5rem)]"
     >
       <div className="rounded-2xl border border-gray-200/90 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 shadow-xl flex items-center justify-between gap-3">
         {/* Logo / Icône & Description */}

@@ -344,7 +344,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <main className="min-h-screen bg-white pb-20">
+    <main className="min-h-screen bg-white pb-20 max-w-full overflow-x-hidden">
       
       {/* Bouton Retour sans bordure avec flèche retour */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 pb-2">

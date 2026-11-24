@@ -11,7 +11,7 @@ export default function WhatsAppFloatingButton() {
   return (
     <aside
       aria-label="Support client WhatsApp"
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2.5 max-w-[calc(100vw-2rem)]"
     >
       {/* Bulle d'aide au survol */}
       <span

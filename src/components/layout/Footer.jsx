@@ -209,8 +209,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white border-t border-gray-200">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-white border-t border-gray-200 overflow-x-hidden max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
         
         {/* Section "Stay in the loop" */}
         <div className="py-12 sm:py-16 border-b border-gray-200">

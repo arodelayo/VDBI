@@ -88,7 +88,7 @@ ${formData.message}
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50/50 pb-24">
+    <main className="min-h-screen bg-gray-50/50 pb-24 max-w-full overflow-x-hidden">
       {/* Bannière En-tête */}
       <section className="bg-[#1d1d1d] py-16 px-4 sm:px-6 lg:px-8 text-white text-center">
         <div className="mx-auto max-w-3xl">
